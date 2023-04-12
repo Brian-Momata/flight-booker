@@ -1,12 +1,17 @@
 <h1>Search for available flights</h1>
 <%= form_for :flight, method: :get do |f| %>
   <%= label_tag(:departure_code, "Departure Airport:") %>
-  <%= select_tag(:departure_code, options_for_select(@departure_airports)) %><br>
+  <%= select_tag(:departure_code, options_for_select(@departure_airports)) %><br><br>
   <%= label_tag(:arrival_code, "Arrival Airport:")%>
-  <%= select_tag(:arrival_code, options_for_select(@arrival_airports)) %><br>
+  <%= select_tag(:arrival_code, options_for_select(@arrival_airports)) %><br><br>
   <%= label_tag(:num_tickets, "Number of Passengers") %>
-  <%= select_tag(:num_tickets, options_for_select((1..4).to_a)) %><br>
+  <%= select_tag(:num_tickets, options_for_select((1..4).to_a)) %><br><br>
   <%= label_tag(:date, "Dates") %>
   <!-- change the format of the dates and set the time obect as the value -->
-  <%= select_tag(:date, options_for_select(Airport.departure_times.map { |time| [time.strftime('%m/%d/%Y'), time] })) %>
+  <%= select_tag(:date, options_for_select(Airport.departure_times.map { |time| [time.strftime('%m/%d/%Y'), time] })) %><br><br>
+  <%= submit_tag "search"%>
+<% end %>
+
+<% if !params.empty? %>
+  <%= @flights.pluck(:start)%>
 <% end %>

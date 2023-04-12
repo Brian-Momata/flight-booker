@@ -5,6 +5,6 @@ class Airport < ApplicationRecord
 
   # collecting start values for all departing flights
   def self.departure_times
-    Airport.all.map { |f| f.departing_flights.pluck(:start) }.select { |array| !array.empty? }
+    Airport.all.map { |a| a.departing_flights.pluck(:start) }.select { |array| !array.empty? }.flatten(1)
   end
 end

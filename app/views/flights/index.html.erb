@@ -12,6 +12,21 @@
   <%= submit_tag "search"%>
 <% end %>
 
-<% if !params.empty? %>
-  <%= @flights.pluck(:start)%>
+<% if params[:departure_code].present? && params[:arrival_code].present? && params[:num_tickets].present? && params[:date].present? %>
+  <h2>Results</h2>
+  <h4>Departure: <%= Airport.find(params[:departure_code]).code %></h4>
+  <h4>Destination: <%= Airport.find(params[:arrival_code]).code %></h4>
+  <% if @flights.empty? %>
+    <p>There're no flights</p>
+  <% else %>
+    <h3>List of flights:</h3>
+    <p>Click to select a flight</p>
+    <%= form_for :flights, method: :get do |f| %>
+      <% @flights.each do |flight| %>
+        <%= f.radio_button :ids, flight.id %>
+        <%= f.label :ids," Flight Duration: #{flight.duration} hours" %>
+      <% end %>
+      <%= f.hidden_field :num_passengers, value: params[:num_tickets] %>
+    <% end %>
+  <% end %>
 <% end %>

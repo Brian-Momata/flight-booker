@@ -21,12 +21,13 @@
   <% else %>
     <h3>List of flights:</h3>
     <p>Click to select a flight</p>
-    <%= form_for :flights, method: :get do |f| %>
+    <%= form_for :flight, url: new_booking_path, method: :get do |f| %>
       <% @flights.each do |flight| %>
-        <%= f.radio_button :ids, flight.id %>
-        <%= f.label :ids," Flight Duration: #{flight.duration} hours" %>
+        <%= f.radio_button :id, flight.id %>
+        <%= f.label :id," Flight Duration: #{flight.duration} hours" %>
       <% end %>
-      <%= f.hidden_field :num_passengers, value: params[:num_tickets] %>
+      <%= f.hidden_field :num_passengers, value: params[:num_tickets] %> <br>
+      <%= f.submit "Submit"%>
     <% end %>
   <% end %>
 <% end %>

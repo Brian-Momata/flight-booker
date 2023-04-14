@@ -1,0 +1,5 @@
+<h1>Bookings</h1>
+<% flight = Flight.find(params[:flight][:id]) %>
+<p>Currently Chosen Date: <%= flight.start.to_date %></p>
+<p>Airport ID: <%= flight.departure_airport.code %></p>
+<p>Flight ID: <%= flight.id %> </p>

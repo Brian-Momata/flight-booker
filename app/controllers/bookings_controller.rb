@@ -11,14 +11,17 @@ class BookingsController < ApplicationController
     @booking.flight_id = params[:booking][:flight_id]
     if @booking.save
       flash[:success] = "Object successfully created"
-      redirect_to root_path
+      redirect_to @booking
     else
       flash[:error] = "Something went wrong"
       render 'new'
     end
   end
   
-
+  def show
+    @booking = Booking.find(params[:id])
+  end
+  
   private
   
   def booking_params

@@ -3,3 +3,16 @@
 <p>Currently Chosen Date: <%= flight.start.to_date %></p>
 <p>Airport ID: <%= flight.departure_airport.code %></p>
 <p>Flight ID: <%= flight.id %> </p>
+
+<%= form_for @booking do |f| %>
+  <%= f.fields_for :passengers do |p| %>
+    <h3>Enter passenger info</h3>
+    <%= p.label :name %>
+    <%= p.text_field :name %>
+    <%= p.label :email %>
+    <%= p.email_field :email %>
+  <% end %>
+  <br><br>
+  <%= f.submit %>
+<% end %>
+

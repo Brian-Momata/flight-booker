@@ -5,6 +5,7 @@
 <p>Flight ID: <%= flight.id %> </p>
 
 <%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, value: flight.id %>
   <%= f.fields_for :passengers do |p| %>
     <h3>Enter passenger info</h3>
     <%= p.label :name %>

@@ -1,6 +1,8 @@
-<h1>Here is the booking</h1>
-<!--
+<h1>Here is the booking details</h1>
+<% count = 0 %>
+
+<p>Flight ID: <%= @booking.flight_id %></p>
 <% @booking.passengers.each do |p| %>
-  <p><%= p.name %></p>
+  <% count += 1%>
+  <p> Passenger <%= count %>: <%= p.name %></p>
 <% end %>
--->

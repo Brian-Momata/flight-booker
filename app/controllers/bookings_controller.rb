@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.flight_id = params[:booking][:flight_id]
     if @booking.save
-      flash[:success] = "Object successfully created"
+      flash[:success] = "Booking successfully created"
       redirect_to @booking
     else
       flash[:error] = "Something went wrong"

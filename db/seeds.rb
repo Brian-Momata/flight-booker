@@ -7,10 +7,10 @@ require 'faker'
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Create 50 Airport objects
-# 50.times do
-#   Airport.create(code: Faker::Travel::Airport.iata(size: 'large', region: 'united_states'))
-# end
+# Create 10 Airport objects
+10.times do
+  Airport.create(code: Faker::Travel::Airport.iata(size: 'large', region: 'united_states'))
+end
 # Get all airports
 airports = Airport.all
 
@@ -18,7 +18,7 @@ airports = Airport.all
 150.times do
   departure_airport = airports.sample
   arrival_airport = airports.sample
-  start = Faker::Time.between(from:  DateTime.now - 30, to: DateTime.now + 30)
+  start = Faker::Time.between(from:  DateTime.now, to: DateTime.now + 2)
   duration = rand(1..10)
 
   Flight.create(

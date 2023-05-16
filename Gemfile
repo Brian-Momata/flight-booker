@@ -74,3 +74,5 @@ end
 gem "simple_form"
 
 gem 'faker'
+
+gem "letter_opener"

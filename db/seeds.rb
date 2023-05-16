@@ -18,7 +18,7 @@ airports = Airport.all
 150.times do
   departure_airport = airports.sample
   arrival_airport = airports.sample
-  start = Faker::Time.between(from:  DateTime.now, to: DateTime.now + 2)
+  start = Faker::Time.between(from:  DateTime.now, to: DateTime.now + 5)
   duration = rand(1..10)
 
   Flight.create(

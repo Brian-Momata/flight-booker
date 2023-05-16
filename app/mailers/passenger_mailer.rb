@@ -4,6 +4,7 @@ class PassengerMailer < ApplicationMailer
   def confirmation_email
     # Save a list of passengers to a variable
     @passengers = params[:passengers]
+    @booking = params[:booking]
 
     # Send a confimation email to all the passengers
     @passengers.each do |passenger|

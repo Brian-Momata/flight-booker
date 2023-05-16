@@ -9,12 +9,20 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.flight_id = params[:booking][:flight_id]
-    if @booking.save
-      flash[:success] = "Booking successfully created"
-      redirect_to @booking
-    else
-      flash[:error] = "Something went wrong"
-      render 'new'
+
+    respond_to do |format|
+      if @booking.save
+        # tell PassengerMailer to send confirmation email after a save
+        PassengerMailer.with(passengers: @booking.passengers, booking: @booking)
+        .confirmation_email
+        .deliver_now
+
+        format.html { redirect_to(@booking, success: 'Booking successfully created') }
+        format.json { render json: @booking }
+      else
+        format.html { render action: 'new', error: 'Something went wrong' }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
     end
   end
   
